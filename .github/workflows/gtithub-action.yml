@@ -1,0 +1,18 @@
+name: every day imaotai
+on:
+  schedule:
+  - cron: '15,40,50 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  primary-job:
+    runs-on: ubuntu-latest
+    container:
+      image: 358963981/imaotai
+    steps:
+    - name: set credentials
+      env:
+        CREDENTIALS: ${{ secrets.CREDENTIALS }}
+      run: "mkdir ~/.imaotai && echo $CREDENTIALS | base64 -d > ~/.imaotai/credentials"
+    - name: run
+      run: "ls -al / && ls -al ~ && python /imaotai/main.py"
