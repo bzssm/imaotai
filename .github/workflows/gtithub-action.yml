@@ -1,7 +1,7 @@
 name: every day imaotai
 on:
   schedule:
-  - cron: '15,40,50 9 * * *'
+  - cron: '15,30,40,50 1 * * *'
   workflow_dispatch:
 
 jobs:
