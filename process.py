@@ -23,6 +23,9 @@ mt_version = "".join(re.findall('new__latest__version">(.*?)</p>',
                                 requests.get('https://apps.apple.com/cn/app/i%E8%8C%85%E5%8F%B0/id1600482450').text,
                                 re.S)).replace('版本 ', '')
 
+mt_version = re.findall(r"\d+\.\d+\.\d+", mt_version)[0]
+print(f"app version: {mt_version}")
+
 header_context = f'''
 MT-Lat: 28.499562
 MT-K: 1675213490331
@@ -119,6 +122,7 @@ def get_location_count(province: str,
                        lng: str = '102.182324'):
     day_time = int(time.mktime(datetime.date.today().timetuple())) * 1000
     session_id = headers['current_session_id']
+    print(f"buy request: https://static.moutai519.com.cn/mt-backend/xhr/front/mall/shop/list/slim/v3/{session_id}/{province}/{item_code}/{day_time}")
     responses = requests.get(
         f"https://static.moutai519.com.cn/mt-backend/xhr/front/mall/shop/list/slim/v3/{session_id}/{province}/{item_code}/{day_time}")
     if responses.status_code != 200:

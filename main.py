@@ -28,6 +28,7 @@ for section in configs.sections():
     userId = configs.get(section, 'userid')
     lat = configs.get(mobile, 'lat')
     lng = configs.get(mobile, 'lng')
+    print(f"province省份: {province}")
 
     p_c_map, source_data = process.get_map(lat=lat, lng=lng)
 
